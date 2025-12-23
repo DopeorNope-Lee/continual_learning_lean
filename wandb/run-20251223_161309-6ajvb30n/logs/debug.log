@@ -19,3 +19,4 @@ config: {'model_name_or_path': 'Qwen/Qwen3-8B', 'attn_implementation': None, 'da
 2025-12-23 16:13:12,110 INFO    MainThread:3366062 [wandb_run.py:_redirect():2375] Wrapping output streams.
 2025-12-23 16:13:12,111 INFO    MainThread:3366062 [wandb_run.py:_redirect():2398] Redirects installed.
 2025-12-23 16:13:12,118 INFO    MainThread:3366062 [wandb_init.py:init():1075] run started, returning control to user process
+2025-12-23 16:18:43,412 INFO    MsgRouterThr:3366062 [mailbox.py:close():129] [no run ID] Closing mailbox, abandoning 1 handles.

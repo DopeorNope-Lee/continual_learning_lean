@@ -1,3 +1,81 @@
 [2025-12-23 16:13:16,277] [INFO] [config.py:744:__init__] Config mesh_device None world_size = 4
 [2025-12-23 16:13:22,245] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 399, num_elems = 8.19B
 Loading checkpoint shards: 100%|██████████████████████████████| 5/5 [00:04<00:00,  1.07it/s]
+Tokenizing train (num_proc=8): 100%|█████| 1730861/1730861 [04:49<00:00, 5975.48 examples/s]
+Tokenizing eval (num_proc=8): 100%|█████████████| 1733/1733 [00:01<00:00, 999.90 examples/s]
+/data/SIML/sy/group_theory/Continual_learning/src/train_nl2fl.py:498: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `Trainer.__init__`. Use `processing_class` instead.
+  trainer = Trainer(
+WARNING:accelerate.accelerator:Gradient accumulation steps mismatch: GradientAccumulationPlugin has 1, DeepSpeed config has 8. Using DeepSpeed's value.
+Parameter Offload: Total persistent parameters: 308224 in 145 params
+Traceback (most recent call last):
+  File "/data/SIML/sy/group_theory/Continual_learning/src/train_nl2fl.py", line 513, in <module>
+    main()
+  File "/data/SIML/sy/group_theory/Continual_learning/src/train_nl2fl.py", line 507, in main
+    trainer.train(resume_from_checkpoint=train_cfg.resume_from_checkpoint)
+  File "/data/conda_envs/cpt/lib/python3.12/site-packages/transformers/trainer.py", line 2206, in train
+    return inner_training_loop(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/data/conda_envs/cpt/lib/python3.12/site-packages/transformers/trainer.py", line 2362, in _inner_training_loop
+    model, self.optimizer = self.accelerator.prepare(self.model, self.optimizer)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/conda_envs/cpt/lib/python3.12/site-packages/accelerate/accelerator.py", line 1424, in prepare
+    result = self._prepare_deepspeed(*args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/conda_envs/cpt/lib/python3.12/site-packages/accelerate/accelerator.py", line 2108, in _prepare_deepspeed
+    engine, optimizer, _, lr_scheduler = ds_initialize(**kwargs)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/conda_envs/cpt/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
+    engine = DeepSpeedEngine(args=args,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/conda_envs/cpt/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 326, in __init__
+    self._configure_optimizer(optimizer, model_parameters)
+  File "/data/conda_envs/cpt/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1417, in _configure_optimizer
+    self.optimizer = self._configure_zero_optimizer(basic_optimizer)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/conda_envs/cpt/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1743, in _configure_zero_optimizer
+    optimizer = DeepSpeedZeroOptimizer_Stage3(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/conda_envs/cpt/lib/python3.12/site-packages/deepspeed/runtime/zero/stage3.py", line 404, in __init__
+    self._setup_for_real_optimizer()
+  File "/data/conda_envs/cpt/lib/python3.12/site-packages/deepspeed/runtime/zero/stage3.py", line 520, in _setup_for_real_optimizer
+    self._create_fp32_partitions()
+  File "/data/conda_envs/cpt/lib/python3.12/site-packages/deepspeed/runtime/zero/stage3.py", line 906, in _create_fp32_partitions
+    self.device).clone().float().detach())
+                 ^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 24.00 MiB. GPU 0 has a total capacity of 79.11 GiB of which 15.38 MiB is free. Process 1950599 has 66.24 GiB memory in use. Including non-PyTorch memory, this process has 12.83 GiB memory in use. Of the allocated memory 10.00 GiB is allocated by PyTorch, and 20.00 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/data/SIML/sy/group_theory/Continual_learning/src/train_nl2fl.py", line 513, in <module>
+[rank0]:     main()
+[rank0]:   File "/data/SIML/sy/group_theory/Continual_learning/src/train_nl2fl.py", line 507, in main
+[rank0]:     trainer.train(resume_from_checkpoint=train_cfg.resume_from_checkpoint)
+[rank0]:   File "/data/conda_envs/cpt/lib/python3.12/site-packages/transformers/trainer.py", line 2206, in train
+[rank0]:     return inner_training_loop(
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data/conda_envs/cpt/lib/python3.12/site-packages/transformers/trainer.py", line 2362, in _inner_training_loop
+[rank0]:     model, self.optimizer = self.accelerator.prepare(self.model, self.optimizer)
+[rank0]:                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data/conda_envs/cpt/lib/python3.12/site-packages/accelerate/accelerator.py", line 1424, in prepare
+[rank0]:     result = self._prepare_deepspeed(*args)
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data/conda_envs/cpt/lib/python3.12/site-packages/accelerate/accelerator.py", line 2108, in _prepare_deepspeed
+[rank0]:     engine, optimizer, _, lr_scheduler = ds_initialize(**kwargs)
+[rank0]:                                          ^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data/conda_envs/cpt/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
+[rank0]:     engine = DeepSpeedEngine(args=args,
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data/conda_envs/cpt/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 326, in __init__
+[rank0]:     self._configure_optimizer(optimizer, model_parameters)
+[rank0]:   File "/data/conda_envs/cpt/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1417, in _configure_optimizer
+[rank0]:     self.optimizer = self._configure_zero_optimizer(basic_optimizer)
+[rank0]:                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data/conda_envs/cpt/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1743, in _configure_zero_optimizer
+[rank0]:     optimizer = DeepSpeedZeroOptimizer_Stage3(
+[rank0]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data/conda_envs/cpt/lib/python3.12/site-packages/deepspeed/runtime/zero/stage3.py", line 404, in __init__
+[rank0]:     self._setup_for_real_optimizer()
+[rank0]:   File "/data/conda_envs/cpt/lib/python3.12/site-packages/deepspeed/runtime/zero/stage3.py", line 520, in _setup_for_real_optimizer
+[rank0]:     self._create_fp32_partitions()
+[rank0]:   File "/data/conda_envs/cpt/lib/python3.12/site-packages/deepspeed/runtime/zero/stage3.py", line 906, in _create_fp32_partitions
+[rank0]:     self.device).clone().float().detach())
+[rank0]:                  ^^^^^^^
+[rank0]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 24.00 MiB. GPU 0 has a total capacity of 79.11 GiB of which 15.38 MiB is free. Process 1950599 has 66.24 GiB memory in use. Including non-PyTorch memory, this process has 12.83 GiB memory in use. Of the allocated memory 10.00 GiB is allocated by PyTorch, and 20.00 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
