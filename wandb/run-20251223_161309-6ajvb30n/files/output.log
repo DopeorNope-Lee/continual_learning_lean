@@ -1,0 +1,3 @@
+[2025-12-23 16:13:16,277] [INFO] [config.py:744:__init__] Config mesh_device None world_size = 4
+[2025-12-23 16:13:22,245] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 399, num_elems = 8.19B
+Loading checkpoint shards: 100%|██████████████████████████████| 5/5 [00:04<00:00,  1.07it/s]

@@ -1,0 +1,20 @@
+Instruction:
+We have a user's multiple-choice question and a model's generated response.
+
+Your task:
+1. ONLY process EXAMPLE 7. Ignore all other examples.
+2. Extract the model's final answer choice as a single letter among A, B, C, D.
+3. If the response contains a phrase like "Answer: B" or "The answer is (B)", extract that letter.
+4. If the response mentions an option text (e.g., "Paris") without the letter, DO NOT guess. Output "INVALID".
+
+Output format (EXACTLY):
+- **Model's Final Answer is:** [A|B|C|D|INVALID]
+
+Rules:
+- Output must be exactly one of A, B, C, D, INVALID.
+- Do not add explanations.
+
+### Examples
+...
+#### Example 7:
+- Model's Generated Response: {answer_text}

@@ -1,0 +1,21 @@
+2025-12-23 16:13:09,153 INFO    MainThread:3366062 [wandb_setup.py:_flush():80] Current SDK version is 0.21.0
+2025-12-23 16:13:09,153 INFO    MainThread:3366062 [wandb_setup.py:_flush():80] Configure stats pid to 3366062
+2025-12-23 16:13:09,153 INFO    MainThread:3366062 [wandb_setup.py:_flush():80] Loading settings from /home/ubuntu/.config/wandb/settings
+2025-12-23 16:13:09,154 INFO    MainThread:3366062 [wandb_setup.py:_flush():80] Loading settings from /data/SIML/sy/group_theory/Continual_learning/wandb/settings
+2025-12-23 16:13:09,154 INFO    MainThread:3366062 [wandb_setup.py:_flush():80] Loading settings from environment variables
+2025-12-23 16:13:09,155 INFO    MainThread:3366062 [wandb_init.py:setup_run_log_directory():703] Logging user logs to /data/SIML/sy/group_theory/Continual_learning/wandb/run-20251223_161309-6ajvb30n/logs/debug.log
+2025-12-23 16:13:09,156 INFO    MainThread:3366062 [wandb_init.py:setup_run_log_directory():704] Logging internal logs to /data/SIML/sy/group_theory/Continual_learning/wandb/run-20251223_161309-6ajvb30n/logs/debug-internal.log
+2025-12-23 16:13:09,156 INFO    MainThread:3366062 [wandb_init.py:init():830] calling init triggers
+2025-12-23 16:13:09,157 INFO    MainThread:3366062 [wandb_init.py:init():835] wandb.init called with sweep_config: {}
+config: {'model_name_or_path': 'Qwen/Qwen3-8B', 'attn_implementation': None, 'dataset_name': 'Goedel-LM/Goedel-Pset-v1', 'eval_ratio': 0.001, 'max_seq_length': 4096, 'wrap_in_code_block': True, 'enable_thinking': False, 'output_dir': './FFT-naive', 'num_train_epochs': 1.0, 'learning_rate': 1e-05, 'weight_decay': 0.1, 'warmup_ratio': 0.03, 'lr_scheduler_type': 'cosine', 'optim': 'adamw_torch_fused', 'per_device_train_batch_size': 2, 'gradient_accumulation_steps': 8, 'max_grad_norm': 1.0, 'bf16': True, 'fp16': False, 'tf32': True, 'gradient_checkpointing': True, 'deepspeed': '//data/SIML/sy/group_theory/Continual_learning/config/zero3_bf16.json', 'wandb_project': 'continual-learning', 'wandb_group': None, 'wandb_mode': 'online', '_wandb': {}}
+2025-12-23 16:13:09,157 INFO    MainThread:3366062 [wandb_init.py:init():871] starting backend
+2025-12-23 16:13:09,643 INFO    MainThread:3366062 [wandb_init.py:init():874] sending inform_init request
+2025-12-23 16:13:09,669 INFO    MainThread:3366062 [wandb_init.py:init():882] backend started and connected
+2025-12-23 16:13:09,673 INFO    MainThread:3366062 [wandb_init.py:init():953] updated telemetry
+2025-12-23 16:13:09,675 INFO    MainThread:3366062 [wandb_init.py:init():977] communicating run to backend with 90.0 second timeout
+2025-12-23 16:13:10,826 INFO    MainThread:3366062 [wandb_init.py:init():1029] starting run threads in backend
+2025-12-23 16:13:12,110 INFO    MainThread:3366062 [wandb_run.py:_console_start():2458] atexit reg
+2025-12-23 16:13:12,110 INFO    MainThread:3366062 [wandb_run.py:_redirect():2306] redirect: wrap_raw
+2025-12-23 16:13:12,110 INFO    MainThread:3366062 [wandb_run.py:_redirect():2375] Wrapping output streams.
+2025-12-23 16:13:12,111 INFO    MainThread:3366062 [wandb_run.py:_redirect():2398] Redirects installed.
+2025-12-23 16:13:12,118 INFO    MainThread:3366062 [wandb_init.py:init():1075] run started, returning control to user process
