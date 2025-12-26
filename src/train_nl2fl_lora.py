@@ -22,7 +22,7 @@ LORA_CONFIG = LoraConfig(
     r=8,
     lora_alpha=32,
     lora_dropout=0.1,
-    target_modules=["q_proj", "k_proj", "v_proj", "o_proj"],
+    target_modules=["q_proj", "k_proj", "v_proj", "o_proj",'embed_tokens','lm_head'],
     bias="none")
 
 # -----------------------------
@@ -389,26 +389,34 @@ def main():
         torch_dtype=torch.bfloat16 if train_cfg.bf16 else None,
         attn_implementation=model_cfg.attn_implementation,
     )
+    
+    model = get_peft_model(model, LORA_CONFIG)
+    
+    
     model.config.use_cache = False  # training 안정
 
     if train_cfg.gradient_checkpointing:
         model.gradient_checkpointing_enable()
 
-    # dataset
-    ds = load_dataset(data_cfg.dataset_name, split=data_cfg.dataset_split)
+    # -------------------------------------------------------------
+    # [FIX] Race Condition 방지: 데이터셋 로드와 Split을 Main Process가 먼저 수행
+    # -------------------------------------------------------------
+    with training_args.main_process_first(desc="Loading & Splitting Dataset"):
+        # dataset
+        ds = load_dataset(data_cfg.dataset_name, split=data_cfg.dataset_split)
 
-    # 디버그용 샘플 제한
-    if data_cfg.max_train_samples is not None:
-        ds = ds.select(range(min(len(ds), data_cfg.max_train_samples)))
+        # 디버그용 샘플 제한
+        if data_cfg.max_train_samples is not None:
+            ds = ds.select(range(min(len(ds), data_cfg.max_train_samples)))
 
-    # eval split
-    if eval_enabled:
-        split = ds.train_test_split(test_size=data_cfg.eval_ratio, seed=data_cfg.seed, shuffle=True)
-        train_ds, eval_ds = split["train"], split["test"]
-        if data_cfg.max_eval_samples is not None:
-            eval_ds = eval_ds.select(range(min(len(eval_ds), data_cfg.max_eval_samples)))
-    else:
-        train_ds, eval_ds = ds, None
+        # eval split
+        if eval_enabled:
+            split = ds.train_test_split(test_size=data_cfg.eval_ratio, seed=data_cfg.seed, shuffle=True)
+            train_ds, eval_ds = split["train"], split["test"]
+            if data_cfg.max_eval_samples is not None:
+                eval_ds = eval_ds.select(range(min(len(eval_ds), data_cfg.max_eval_samples)))
+        else:
+            train_ds, eval_ds = ds, None
 
     eos_text = tokenizer.eos_token or ""
 

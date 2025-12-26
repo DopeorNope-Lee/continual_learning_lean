@@ -336,7 +336,7 @@ def main() -> None:
         trust_remote_code=True,
     )
 
-    stop_tokens = ["\n", "</s>", "<|endoftext|>", "<|end_of_text|>"]
+    stop_tokens = ["</s>", "<|endoftext|>", "<|end_of_text|>"]
     if getattr(tokenizer, "eos_token", None):
         stop_tokens.append(tokenizer.eos_token)
 
@@ -378,6 +378,7 @@ def main() -> None:
             # 추가로 유용한 컬럼
             "pred": preds,
             "correct": correct,
+            'original_answer': completions,
         }
     )
 
