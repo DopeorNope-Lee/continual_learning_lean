@@ -1,0 +1,16 @@
+torch==2.6.0
+transformers==4.57.3
+datasets==4.0.0
+accelerate==1.12.0
+peft==0.15.2
+bitsandbytes==0.45.4
+trl==0.15.2
+deepspeed==0.18.3
+pip install ninja
+flash-attn2
+optimum
+wandb==0.23.1
+scipy
+sentencepiece
+tiktoken
+https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.3/flash_attn-2.7.3+cu12torch2.6cxx11abiFalse-cp311-cp311-linux_x86_64.whl
